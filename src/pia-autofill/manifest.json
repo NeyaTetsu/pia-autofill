@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "チケットぴあ らくらく申し込みツール（非公式）",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "https://va.pia.jp/ での面倒な個人情報の入力を自動化",
   "permissions": [
     "storage"
