@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>チケットぴあ らくらく申し込みツール（非公式） - 設定</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-logo">
+        <div class="logo-icon">
+          <img src="icons/icon48.png" width="38" height="38" alt="アイコン" />
+        </div>
+        <div class="header-text">
+          <h1>チケットぴあ らくらく申し込みツール（非公式）</h1>
+          <p>https://va.pia.jp/ での面倒な個人情報の入力を自動化</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <form id="settings-form" novalidate>
+
+        <!-- 名前 -->
+        <div class="section">
+          <div class="section-label">
+            <span class="section-icon">👤</span>
+            <span>名前</span>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label class="label" for="last_name">姓</label>
+              <input type="text" id="last_name" name="last_name" class="input" placeholder="山田" autocomplete="off" />
+            </div>
+            <div class="input-group">
+              <label class="label" for="first_name">名</label>
+              <input type="text" id="first_name" name="first_name" class="input" placeholder="太郎" autocomplete="off" />
+            </div>
+          </div>
+        </div>
+
+        <!-- フリガナ -->
+        <div class="section">
+          <div class="section-label">
+            <span class="section-icon">📝</span>
+            <span>フリガナ</span>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label class="label" for="last_kana">姓（カナ）</label>
+              <input type="text" id="last_kana" name="last_kana" class="input" placeholder="ヤマダ" autocomplete="off" />
+              <span class="error-msg" id="last_kana_err"></span>
+            </div>
+            <div class="input-group">
+              <label class="label" for="first_kana">名（カナ）</label>
+              <input type="text" id="first_kana" name="first_kana" class="input" placeholder="タロウ" autocomplete="off" />
+              <span class="error-msg" id="first_kana_err"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 性別 -->
+        <div class="section">
+          <div class="section-label">
+            <span class="section-icon">⚧</span>
+            <span>性別</span>
+          </div>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="gender" value="2" id="gender_female" />
+              <span class="radio-custom"></span>
+              <span class="radio-text">女性</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="gender" value="1" id="gender_male" />
+              <span class="radio-custom"></span>
+              <span class="radio-text">男性</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="gender" value="8" id="gender_other" />
+              <span class="radio-custom"></span>
+              <span class="radio-text">その他</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="gender" value="9" id="gender_no_answer" />
+              <span class="radio-custom"></span>
+              <span class="radio-text">回答しない</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 生年月日 -->
+        <div class="section">
+          <div class="section-label">
+            <span class="section-icon">🎂</span>
+            <span>生年月日</span>
+          </div>
+          <div class="input-row birth-row">
+            <div class="input-group birth-year">
+              <label class="label" for="birth_year">年</label>
+              <input type="number" id="birth_year" name="birth_year" class="input" placeholder="1990" min="1900"
+                max="2099" autocomplete="off" />
+            </div>
+            <div class="input-group birth-month">
+              <label class="label" for="birth_month">月</label>
+              <input type="number" id="birth_month" name="birth_month" class="input" placeholder="1" min="1" max="12"
+                autocomplete="off" />
+            </div>
+            <div class="input-group birth-day">
+              <label class="label" for="birth_day">日</label>
+              <input type="number" id="birth_day" name="birth_day" class="input" placeholder="1" min="1" max="31"
+                autocomplete="off" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 電話番号 -->
+        <div class="section">
+          <div class="section-label">
+            <span class="section-icon">📞</span>
+            <span>電話番号</span>
+          </div>
+          <div class="input-row phone-row">
+            <div class="input-group">
+              <label class="label" for="tel1"></label>
+              <input type="text" id="tel1" name="tel1" class="input" placeholder="090" maxlength="4" autocomplete="off"
+                inputmode="numeric" />
+            </div>
+            <div class="separator">−</div>
+            <div class="input-group">
+              <label class="label" for="tel2"></label>
+              <input type="text" id="tel2" name="tel2" class="input" placeholder="1234" maxlength="4" autocomplete="off"
+                inputmode="numeric" />
+            </div>
+            <div class="separator">−</div>
+            <div class="input-group">
+              <label class="label" for="tel3"></label>
+              <input type="text" id="tel3" name="tel3" class="input" placeholder="5678" maxlength="4" autocomplete="off"
+                inputmode="numeric" />
+            </div>
+          </div>
+        </div>
+
+        <!-- メールアドレス -->
+        <div class="section">
+          <div class="section-label">
+            <span class="section-icon">✉️</span>
+            <span>メールアドレス</span>
+          </div>
+          <div class="input-group full-width">
+            <label class="label" for="email">メールアドレス</label>
+            <input type="email" id="email" name="email" class="input" placeholder="example@email.com"
+              autocomplete="off" />
+          </div>
+        </div>
+
+        <!-- 郵便番号 -->
+        <div class="section">
+          <div class="section-label">
+            <span class="section-icon">📮</span>
+            <span>郵便番号</span>
+          </div>
+          <div class="input-row zip-row">
+            <div class="input-group">
+              <label class="label" for="zip1">上3桁</label>
+              <input type="text" id="zip1" name="zip1" class="input" placeholder="123" maxlength="3" autocomplete="off"
+                inputmode="numeric" />
+            </div>
+            <div class="separator">−</div>
+            <div class="input-group">
+              <label class="label" for="zip2">下4桁</label>
+              <input type="text" id="zip2" name="zip2" class="input" placeholder="4567" maxlength="4" autocomplete="off"
+                inputmode="numeric" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 住所 -->
+        <div class="section">
+          <div class="section-label">
+            <span class="section-icon">🏠</span>
+            <span>住所（番地）</span>
+          </div>
+          <div class="input-group full-width">
+            <label class="label" for="address">番地 <span class="note">※全角26文字まで、番地がない方は「番地なし」と入力</span></label>
+            <input type="text" id="address" name="address" class="input" placeholder="1丁目2番3号" autocomplete="off" />
+            <div class="char-counter"><span id="address_count">0</span> / 26文字</div>
+            <span class="error-msg" id="address_err"></span>
+          </div>
+        </div>
+
+        <!-- パスワード -->
+        <div class="section">
+          <div class="section-label">
+            <span class="section-icon">🔐</span>
+            <span>申込状況照会用パスワード</span>
+          </div>
+          <div class="input-group full-width">
+            <label class="label" for="password">パスワード <span class="note">※半角英数字6〜16桁</span></label>
+            <div class="password-wrapper">
+              <input type="password" id="password" name="password" class="input" placeholder="半角英数字6〜16桁"
+                autocomplete="off" />
+              <button type="button" class="toggle-pw" id="toggle_pw" aria-label="パスワードを表示/非表示">
+                <svg id="eye_icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+            </div>
+            <span class="error-msg" id="password_err"></span>
+            <span class="note-block">忘れないよう必ずメモをお願いします</span>
+          </div>
+        </div>
+
+        <!-- ボタン -->
+        <div class="action-row">
+          <button type="button" id="clear_btn" class="btn btn-secondary">クリア</button>
+          <button type="submit" id="save_btn" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+              <polyline points="17 21 17 13 7 13 7 21" />
+              <polyline points="7 3 7 8 15 8" />
+            </svg>
+            保存する
+          </button>
+        </div>
+
+        <div id="save_msg" class="save-msg" aria-live="polite"></div>
+
+      </form>
+    </main>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>
