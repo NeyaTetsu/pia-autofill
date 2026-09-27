@@ -9,32 +9,30 @@
   }
 
   // ── DOM refs ──
-  const form         = document.getElementById('settings-form');
-  const lastNameEl   = document.getElementById('last_name');
-  const firstNameEl  = document.getElementById('first_name');
-  const lastKanaEl   = document.getElementById('last_kana');
-  const firstKanaEl  = document.getElementById('first_kana');
-  const lastKanaErr  = document.getElementById('last_kana_err');
-  const firstKanaErr = document.getElementById('first_kana_err');
-  const genderEls    = document.querySelectorAll('input[name="gender"]');
-  const birthYearEl  = document.getElementById('birth_year');
+  const form = document.getElementById('settings-form');
+  const lastNameEl = document.getElementById('last_name');
+  const firstNameEl = document.getElementById('first_name');
+  const lastKanaEl = document.getElementById('last_kana');
+  const firstKanaEl = document.getElementById('first_kana');
+  const genderEls = document.querySelectorAll('input[name="gender"]');
+  const birthYearEl = document.getElementById('birth_year');
   const birthMonthEl = document.getElementById('birth_month');
-  const birthDayEl   = document.getElementById('birth_day');
-  const tel1El       = document.getElementById('tel1');
-  const tel2El       = document.getElementById('tel2');
-  const tel3El       = document.getElementById('tel3');
-  const emailEl      = document.getElementById('email');
-  const zip1El       = document.getElementById('zip1');
-  const zip2El       = document.getElementById('zip2');
-  const addressEl    = document.getElementById('address');
-  const addrCount    = document.getElementById('address_count');
-  const addressErr   = document.getElementById('address_err');
-  const passwordEl   = document.getElementById('password');
-  const passwordErr  = document.getElementById('password_err');
-  const togglePwBtn  = document.getElementById('toggle_pw');
-  const clearBtn     = document.getElementById('clear_btn');
-  const saveMsg      = document.getElementById('save_msg');
-  const charCounter  = document.querySelector('.char-counter');
+  const birthDayEl = document.getElementById('birth_day');
+  const tel1El = document.getElementById('tel1');
+  const tel2El = document.getElementById('tel2');
+  const tel3El = document.getElementById('tel3');
+  const emailEl = document.getElementById('email');
+  const zip1El = document.getElementById('zip1');
+  const zip2El = document.getElementById('zip2');
+  const addressEl = document.getElementById('address');
+  const addrCount = document.getElementById('address_count');
+  const addressErr = document.getElementById('address_err');
+  const passwordEl = document.getElementById('password');
+  const passwordErr = document.getElementById('password_err');
+  const togglePwBtn = document.getElementById('toggle_pw');
+  const clearBtn = document.getElementById('clear_btn');
+  const saveMsg = document.getElementById('save_msg');
+  const charCounter = document.querySelector('.char-counter');
 
   // ── 文字数カウンタ ──
   function updateCharCount() {
@@ -50,21 +48,6 @@
     }
   }
   addressEl.addEventListener('input', updateCharCount);
-
-  // ── フリガナ検証 ──
-  function validateKana(inputEl, errEl) {
-    if (!isZenkakuKana(inputEl.value)) {
-      errEl.textContent = '全角のカタカナで入力してください';
-      inputEl.classList.add('error');
-      return false;
-    }
-    errEl.textContent = '';
-    inputEl.classList.remove('error');
-    return true;
-  }
-
-  lastKanaEl.addEventListener('input',  () => validateKana(lastKanaEl,  lastKanaErr));
-  firstKanaEl.addEventListener('input', () => validateKana(firstKanaEl, firstKanaErr));
 
   // ── パスワード検証 ──
   const PW_RE = /^[a-zA-Z0-9]{6,16}$/;
@@ -104,21 +87,21 @@
     chrome.storage.local.get('piaSettings', (result) => {
       const s = result.piaSettings || {};
 
-      lastNameEl.value   = s.last_name   || '';
-      firstNameEl.value  = s.first_name  || '';
-      lastKanaEl.value   = s.last_kana   || '';
-      firstKanaEl.value  = s.first_kana  || '';
-      birthYearEl.value  = s.birth_year  || '';
+      lastNameEl.value = s.last_name || '';
+      firstNameEl.value = s.first_name || '';
+      lastKanaEl.value = s.last_kana || '';
+      firstKanaEl.value = s.first_kana || '';
+      birthYearEl.value = s.birth_year || '';
       birthMonthEl.value = s.birth_month || '';
-      birthDayEl.value   = s.birth_day   || '';
-      tel1El.value       = s.tel1        || '';
-      tel2El.value       = s.tel2        || '';
-      tel3El.value       = s.tel3        || '';
-      emailEl.value      = s.email       || '';
-      zip1El.value       = s.zip1        || '';
-      zip2El.value       = s.zip2        || '';
-      addressEl.value    = s.address     || '';
-      passwordEl.value   = s.password    || '';
+      birthDayEl.value = s.birth_day || '';
+      tel1El.value = s.tel1 || '';
+      tel2El.value = s.tel2 || '';
+      tel3El.value = s.tel3 || '';
+      emailEl.value = s.email || '';
+      zip1El.value = s.zip1 || '';
+      zip2El.value = s.zip2 || '';
+      addressEl.value = s.address || '';
+      passwordEl.value = s.password || '';
 
       if (s.gender) {
         const target = document.querySelector(`input[name="gender"][value="${s.gender}"]`);
@@ -132,10 +115,6 @@
   // ── ストレージへ保存 ──
   function saveSettings(e) {
     e.preventDefault();
-
-    // フリガナ検証
-    const lastKanaOk  = validateKana(lastKanaEl,  lastKanaErr);
-    const firstKanaOk = validateKana(firstKanaEl, firstKanaErr);
 
     // 住所文字数検証
     const addrOk = addressEl.value.length <= 26;
@@ -156,25 +135,25 @@
 
     // 月・日のゼロパディング
     const monthVal = birthMonthEl.value ? String(birthMonthEl.value).padStart(2, '0') : '';
-    const dayVal   = birthDayEl.value   ? String(birthDayEl.value).padStart(2, '0')   : '';
+    const dayVal = birthDayEl.value ? String(birthDayEl.value).padStart(2, '0') : '';
 
     const settings = {
-      last_name:   lastNameEl.value.trim(),
-      first_name:  firstNameEl.value.trim(),
-      last_kana:   lastKanaEl.value.trim(),
-      first_kana:  firstKanaEl.value.trim(),
-      gender:      selectedGender ? selectedGender.value : '',
-      birth_year:  birthYearEl.value,
+      last_name: lastNameEl.value.trim(),
+      first_name: firstNameEl.value.trim(),
+      last_kana: lastKanaEl.value.trim(),
+      first_kana: firstKanaEl.value.trim(),
+      gender: selectedGender ? selectedGender.value : '',
+      birth_year: birthYearEl.value,
       birth_month: monthVal,
-      birth_day:   dayVal,
-      tel1:        tel1El.value.trim(),
-      tel2:        tel2El.value.trim(),
-      tel3:        tel3El.value.trim(),
-      email:       emailEl.value.trim(),
-      zip1:        zip1El.value.trim(),
-      zip2:        zip2El.value.trim(),
-      address:     addressEl.value,
-      password:    passwordEl.value
+      birth_day: dayVal,
+      tel1: tel1El.value.trim(),
+      tel2: tel2El.value.trim(),
+      tel3: tel3El.value.trim(),
+      email: emailEl.value.trim(),
+      zip1: zip1El.value.trim(),
+      zip2: zip2El.value.trim(),
+      address: addressEl.value,
+      password: passwordEl.value
     };
 
     chrome.storage.local.set({ piaSettings: settings }, () => {
@@ -191,10 +170,10 @@
     if (!confirm('すべての設定をクリアしますか？')) return;
     chrome.storage.local.remove('piaSettings', () => {
       form.reset();
-      lastKanaErr.textContent  = '';
+      lastKanaErr.textContent = '';
       firstKanaErr.textContent = '';
-      addressErr.textContent   = '';
-      passwordErr.textContent  = '';
+      addressErr.textContent = '';
+      passwordErr.textContent = '';
       lastKanaEl.classList.remove('error');
       firstKanaEl.classList.remove('error');
       addressEl.classList.remove('error');
@@ -207,10 +186,10 @@
   // ── メッセージ表示 ──
   function showMsg(text, cls) {
     saveMsg.textContent = text;
-    saveMsg.className   = `save-msg ${cls}`;
+    saveMsg.className = `save-msg ${cls}`;
     setTimeout(() => {
       saveMsg.textContent = '';
-      saveMsg.className   = 'save-msg';
+      saveMsg.className = 'save-msg';
     }, 2500);
   }
 
