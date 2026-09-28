@@ -8,23 +8,23 @@
 }
 
 :root {
-  --bg-base: #f0f0f0;
-  --bg-card: #ffffff;
-  --bg-input: #12141c;
-  --border: #bebebe;
-  --border-focus: #6c63ff;
-  --accent: #6c63ff;
-  --accent-light: #8b85ff;
-  --accent-glow: rgba(108, 99, 255, 0.25);
+  --bg-base: #e0e0e0;
+  --bg-card: #fff;
+  --bg-input: #bebebe;
+  --border: #000;
+  --border-focus: #e77408;
+  --accent: #e77408;
+  --accent-light: #fff0e1;
+  --accent-glow: #fdb877;
   --text-primary: #2b66cc;
-  --text-secondary: #333333;
-  --text-muted: #555972;
-  --error: #ff6b6b;
+  --text-secondary: #333;
+  --text-muted: #999;
+  --error: #fb6159;
   --success: #4ade80;
   --radius: 10px;
   --radius-sm: 6px;
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  --transition: 0.2s ease;
+  --transition: 0.39s ease;
 }
 
 html {
@@ -63,7 +63,7 @@ body::-webkit-scrollbar-thumb {
   top: 0;
   z-index: 10;
   background: var(--bg-card);
-  border-bottom: 1px solid var(--border);
+  box-shadow: 0 0 8px 4px #0000001f;
   padding: 12px 16px;
   backdrop-filter: blur(10px);
 }
@@ -86,14 +86,14 @@ body::-webkit-scrollbar-thumb {
 }
 
 .header-text h1 {
-  font-size: 1.25em;
+  font-size: 1.5em;
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.2;
 }
 
 .header-text p {
-  font-size: .75em;
+  font-size: 1em;
   color: var(--text-secondary);
   margin-top: 1px;
 }
@@ -119,7 +119,7 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 1em;
+  font-size: 1.25em;
   font-weight: 600;
   color: var(--text-secondary);
   text-transform: uppercase;
@@ -148,7 +148,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .label {
-  font-size: 11px;
+  font-size: 1em;
   font-weight: 500;
   color: var(--text-secondary);
   letter-spacing: 0.03em;
@@ -156,13 +156,13 @@ body::-webkit-scrollbar-thumb {
 
 .input {
   width: 100%;
-  background: var(--bg-input);
-  border: 1px solid var(--border);
+  border: none;
   border-radius: var(--radius-sm);
   padding: 7px 10px;
-  font-size: 12px;
+  box-shadow: inset 0 0 6px -3px var(--border);
+  font-size: 1em;
   font-family: inherit;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   outline: none;
   transition: border-color var(--transition), box-shadow var(--transition);
   -moz-appearance: textfield;
@@ -179,14 +179,16 @@ body::-webkit-scrollbar-thumb {
   color: var(--text-muted);
 }
 
+.input:hover {
+  box-shadow: inset 0 0 6px -1.5px var(--border-focus);
+}
+
 .input:focus {
-  border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px var(--accent-glow);
+  box-shadow: inset 0 0 6px 0px var(--border-focus);
 }
 
 .input.error {
-  border-color: var(--error);
-  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+  box-shadow: inset 0 0 6px 0px var(--error);
 }
 
 /* ── Error message ── */
@@ -202,35 +204,26 @@ body::-webkit-scrollbar-thumb {
 .radio-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  /*gap: 8px;*/
 }
 
 .radio-label {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 9px;
   cursor: pointer;
-  padding: 6px 12px;
-  background: var(--bg-input);
-  border: 1px solid var(--border);
-  border-radius: 20px;
+  padding: 6px 12px 6px 9px;
   transition: all var(--transition);
   user-select: none;
-}
-
-.radio-label:hover {
-  border-color: var(--accent);
-  background: rgba(108, 99, 255, 0.08);
 }
 
 .radio-label input[type="radio"] {
   display: none;
 }
 
-.radio-label input[type="radio"]:checked~.radio-custom {
-  background: var(--accent);
+.radio-label input[type="radio"]:checked~.radio-custom,
+.radio-label:hover>.radio-custom {
   border-color: var(--accent);
-  box-shadow: 0 0 0 2px var(--accent-glow);
 }
 
 .radio-label input[type="radio"]:checked~.radio-custom::after {
@@ -239,16 +232,15 @@ body::-webkit-scrollbar-thumb {
 }
 
 .radio-label:has(input:checked) {
-  border-color: var(--accent);
-  background: rgba(108, 99, 255, 0.12);
+  /*background: var(--accent-light);*/
 }
 
 .radio-custom {
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  border: 2px solid var(--border);
-  background: var(--bg-input);
+  border: 2px solid var(--bg-input);
+  background: white;
   position: relative;
   flex-shrink: 0;
   transition: all var(--transition);
@@ -260,17 +252,17 @@ body::-webkit-scrollbar-thumb {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
-  width: 5px;
-  height: 5px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: white;
+  background: var(--accent);
   opacity: 0;
   transition: all var(--transition);
 }
 
 .radio-text {
-  font-size: 12px;
-  color: var(--text-primary);
+  font-size: 1em;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
@@ -294,9 +286,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 .separator {
-  color: var(--text-muted);
-  font-size: 14px;
-  font-weight: 700;
+  color: var(--text-secondary);
+  font-size: 1em;
+  font-weight: 600;
   padding-bottom: 7px;
   flex-shrink: 0;
 }
@@ -309,17 +301,13 @@ body::-webkit-scrollbar-thumb {
   margin-top: 3px;
 }
 
-.char-counter.warn {
-  color: #f59e0b;
-}
-
 .char-counter.full {
   color: var(--error);
 }
 
 /* ── Note ── */
 .note {
-  font-size: 10px;
+  font-size: 1em;
   color: var(--text-muted);
   font-weight: 400;
 }
@@ -399,18 +387,17 @@ body::-webkit-scrollbar-thumb {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent) 0%, #9c27b0 100%);
+  background: var(--accent);
   color: white;
-  box-shadow: 0 4px 15px var(--accent-glow);
 }
 
 .btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+  background: color-mix(in srgb, var(--accent) 90%, white 10%);
+  box-shadow: 0 0px 8px var(--accent-glow);
 }
 
 .btn-primary:active {
-  transform: translateY(0);
+  box-shadow: none;
 }
 
 .btn-secondary {
@@ -422,7 +409,6 @@ body::-webkit-scrollbar-thumb {
 .btn-secondary:hover {
   border-color: var(--accent);
   color: var(--accent);
-  background: rgba(108, 99, 255, 0.06);
 }
 
 /* ── Save message ── */

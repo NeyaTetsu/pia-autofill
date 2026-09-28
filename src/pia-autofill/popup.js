@@ -38,12 +38,10 @@
   function updateCharCount() {
     const len = addressEl.value.length;
     addrCount.textContent = len;
-    charCounter.className = 'char-counter' + (len > 26 ? ' full' : len >= 20 ? ' warn' : '');
+    charCounter.className = 'char-counter' + (len > 26 ? ' full' : '');
     if (len > 26) {
-      addressErr.textContent = '26文字を超えています';
       addressEl.classList.add('error');
     } else {
-      addressErr.textContent = '';
       addressEl.classList.remove('error');
     }
   }
